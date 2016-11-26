@@ -1,0 +1,28 @@
+/// Mixin per customitzar els scrollbars
+/// Recorda, aixo no funciona a tots els navegadors
+/// @param {Length} $size - Asigna la amplada i alçada del {v,h}-scrollbar 
+/// @param {DOM Element} $dE - "Element+clase" a la cual s'aplicará
+/// @param {Color} $thumbColor - Color frontal de la barra de desplaçament
+/// @param {Color} $backColor - Color de fons de la barra de desplaçament
+///   @include scroll(.5em, slategray);
+@mixin scroll($size, $dE: "", $thumbColor: #939393, $backColor: mix($thumbColor, white,  50%)) {
+    //Google Chrome
+    #{$dE}::-webkit-scrollbar {
+        width:  $size;
+        height: $size;
+    }
+
+    #{$dE}::-webkit-scrollbar-thumb {
+        background: $thumbColor;
+    }
+
+    #{$dE}::-webkit-scrollbar-track {
+        background: $backColor;
+    }
+
+    //Internet Explorer
+    #{$dE} {
+        scrollbar-face-color: $thumbColor;
+        scrollbar-track-color: $backColor;
+    }
+}
